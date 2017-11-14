@@ -68,7 +68,7 @@ while room > max_block_room + (block + 1) ** 2:
     max_block_room += block ** 2
 
 room = room - max_block_room - 1
-floor = int((1 + block) * block / 2 + room // (block + 1) + 1)
+floor = (1 + block) * block // 2 + room // (block + 1) + 1
 position = room % (block + 1) + 1
 
 print(floor, position)

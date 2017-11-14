@@ -60,8 +60,8 @@ __author__ = 'Dmitry Panfilov'
 
 print('Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)')
 room = int(input('Введите номер комнаты: '))
-block = 1
-max_block_room = 1
+block = 0
+max_block_room = 0
 
 while room > max_block_room + (block + 1) ** 2:
     block += 1

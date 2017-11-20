@@ -1,3 +1,4 @@
+import random
 
 __author__ = 'Dmitry Panfilov'
 
@@ -16,13 +17,38 @@ __author__ = 'Dmitry Panfilov'
 
 # Подсказка: воспользоваться методом .format()
 
+print('-- 1 --')
+lst = ["яблоко", "банан", "киви", "арбуз"]
+
+for l in lst:
+    print("{0}.{1:>7}".format(lst.index(l) + 1, l))
 
 # Задача-2:
 # Даны два произвольные списка.
 # Удалите из первого списка элементы, присутствующие во втором списке.
+
+print('\n-- 2 --')
+fl = [random.randint(0, 10) for r in range(10)]
+fs = [random.randint(0, 10) for r in range(10)]
+print(fl)
+print(fs)
+fl = set(fl) - set(fs)
+print(fl)
 
 
 # Задача-3:
 # Дан произвольный список из целых чисел.
 # Получите НОВЫЙ список из элементов исходного, выполнив следующие условия:
 # если элемент кратен двум, то разделить его на 4, если не кратен, то умножить на два.
+
+print('\n-- 3 --')
+lst = [random.randint(0, 10) for r in range(10)]
+res = []
+for l in lst:
+    if l % 2:
+        res.append(l * 2)
+    else:
+        res.append(l / 4)
+print(lst)
+print(res)
+

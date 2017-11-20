@@ -8,6 +8,17 @@ __author__ = 'Dmitry Panfilov'
 # x = 2.5
 # вычислите и выведите y
 
+print('-- 1 --')
+equation = 'y = 12x - 4'
+x = 2.5
+lst = equation.split(" ")
+
+y = float(lst[2][:-1]) * x
+if lst[3] == '-':
+    y -= float(lst[4])
+else:
+    y += float(lst[4])
+print(equation, '\nx =', x, '\ny =', y)
 
 # Задание-2: Дата задана в виде строки формата 'dd.mm.yyyy'.
 # Проверить, корректно ли введена дата.
@@ -27,6 +38,42 @@ __author__ = 'Dmitry Panfilov'
 # date = '1.12.1001'
 # date = '-2.10.3001'
 
+
+def check_date(dt):
+    if len(dt) != 10:
+        return False
+
+    parts = dt.split(".", 2)
+    if len(parts[0]) != 2 or len(parts[1]) != 2 or len(parts[2]) != 4:
+        return False
+
+    try:
+        d = int(parts[0])
+        m = int(parts[1])
+        y = int(parts[2])
+    except TypeError:
+        return False
+
+    if 1 <= d <= 31 and 1 <= m <= 12 and 1 <= y <= 9999:
+        days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+        # Високосный год
+        if y % 4 == 0 and (y % 100 != 0 or y % 400 == 0):
+            days[1] = 29
+
+        if d <= days[m - 1]:
+            return True
+
+    return False
+
+
+print('\n-- 2 --')
+print('01.22.1001', check_date('01.22.1001'))
+print('1.12.1001', check_date('1.12.1001'))
+print('-2.10.3001', check_date('-2.10.3001'))
+print('01.11.1985', check_date('01.11.1985'))
+print('29.02.2000', check_date('29.02.2000'))
+print('29.02.1900', check_date('29.02.1900'))
 
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
 #
@@ -58,7 +105,7 @@ __author__ = 'Dmitry Panfilov'
 # Вход: 11
 # Выход: 5 3
 
-print('Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)')
+print('\n-- 3 --')
 room = int(input('Введите номер комнаты: '))
 block = 0
 max_block_room = 0

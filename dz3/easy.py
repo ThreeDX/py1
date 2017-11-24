@@ -9,13 +9,32 @@ __author__ = ''
 # Функция должна возвращать строку вида "Василий, 21 год(а), проживает в городе Москва"
 
 
+def human(name, age, city):
+    return '{}, {} год(а), проживает в городе {}'.format(name, age, city)
+
+
+print(human('Василий', 21, 'Москва'))
+
+
 # Задание - 2:
 # Создайте функцию, принимающую на вход 3 числа, и возвращающую наибольшее из них
+
+def max_int(a, b, c):
+    return max((a, b, c))
+
+
+print(max_int(3, 2, 5))
 
 
 # Задание - 3:
 # Создайте функцию, принимающую неограниченное количество строковых аргументов,
 # верните самую длинную строку из полученных аргументов
+
+def max_len(*args):
+    return max(args, key=len)
+
+
+print(max_len('test', 'assdf', 'asf'))
 
 
 # Задание - 4:
@@ -24,8 +43,10 @@ __author__ = ''
 # Округление должно происходить по математическим правилам (0.6 --> 1, 0.4 --> 0).
 # Для решения задачи не используйте встроенные функции и функции из модуля math.
 
+
 def my_round(number, ndigits):
-    pass
+    mult = int('1'.ljust(ndigits + 1, '0'))
+    return float((number * mult + 0.5) // 1) / mult
 
 
 print(my_round(2.1234567, 5))
@@ -40,7 +61,8 @@ print(my_round(2.9999967, 5))
 # !!!P.S.: функция не должна НИЧЕГО print'ить
 
 def lucky_ticket(ticket_number):
-    pass
+    return len(str(ticket_number)) == 6 and \
+           sum(int(digit) for digit in str(ticket_number)[:3]) == sum(int(digit) for digit in str(ticket_number)[3:])
 
 
 print(lucky_ticket(123006))

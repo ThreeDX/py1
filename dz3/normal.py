@@ -21,8 +21,18 @@ __author__ = ''
 
 
 def fibonacci(n, m):
-    pass
+    res = []
+    for i in range(1, m + 1):
+        if i < 3:
+            res.append(1)
+        else:
+            res.append(res[-2] + res[-1])
+    return res[n-1:]
 
+
+print('\n-- 2 --')
+print(fibonacci(1, 12))
+print(fibonacci(5, 10))
 
 # Задача -3:
 # Напишите функцию, сортирующую принимаемый список по возрастанию.
@@ -31,17 +41,54 @@ def fibonacci(n, m):
 
 
 def sort_to_max(origin_list):
-    pass
+    for i in range(len(origin_list)):
+        for j in range(i+1, len(origin_list)):
+            if origin_list[i] > origin_list[j]:
+                origin_list[i], origin_list[j] = origin_list[j], origin_list[i]
+    return origin_list
 
-sort_to_max([2, 10, -12, 2.5, 20, -11, 4, 4, 0])
 
+print('\n-- 3 --')
+print([2, 10, -12, 2.5, 20, -11, 4, 4, 0])
+print(sort_to_max([2, 10, -12, 2.5, 20, -11, 4, 4, 0]))
 
 # Задача - 4:
 # Напишите собственную реализацию стандартной функции filter.
 # Разумеется, внутри нельзя использовать саму функцию filter.
 
 
+def my_filter(proc, origin_list):
+    res = []
+    for i in origin_list:
+        if proc(i):
+            res.append(i)
+    return res
+
+
+print('\n-- 4 --')
+lst = [i for i in range(-10, 10)]
+print(lst)
+print(my_filter(lambda x: x > 0 and x % 2, lst))
+
 # Задача - 5:
 # Даны четыре точки А1(х1, у1), А2(x2 ,у2), А3(x3 , у3), А4(х4, у4).
 # Определить, будут ли они вершинами параллелограмма.
 
+print('\n-- 5 --')
+# Для простоты считаем что точки в порядке обхода по часовой стрелке
+# Диагонали параллелограмма пересекаются и точка пересечения делит их пополам
+
+
+def is_par(a, b, c, d):
+    s1 = {'x': (a['x'] + c['x']) / 2, 'y': (a['y'] + c['y']) / 2}
+    s2 = {'x': (b['x'] + d['x']) / 2, 'y': (b['y'] + d['y']) / 2}
+    return s1['x'] == s2['x'] and s1['y'] == s2['y']
+
+
+A1 = {'x': 1, 'y': 0}
+A2 = {'x': 3, 'y': 3}
+A3 = {'x': 13, 'y': 3}
+A4 = {'x': 11, 'y': 0}
+
+print(A1, A2, A3, A4)
+print(is_par(A1, A2, A3, A4))
